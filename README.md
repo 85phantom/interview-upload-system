@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+這是一個能夠上傳檔案到 imgur 的系統，採用 JavaScript 語言的 Nest.js 框架開發 RESTful API，使用了 bull.js 作為 message queue 管理。
 
 ## Installation
 
@@ -45,28 +45,13 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Clone 專案
 
 ```bash
-# unit tests
-$ npm run test
+# 透過 git clone 專案到主機任意路徑下
+$ git clone https://github.com/85phantom/interview-upload-system.git
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
