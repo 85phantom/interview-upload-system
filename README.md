@@ -26,6 +26,14 @@
 
 這是一個能夠上傳檔案到 imgur 的系統，採用 JavaScript 語言的 Nest.js 框架開發 RESTful API，使用了 bull.js 作為 message queue 管理。
 
+## Clone 專案
+
+```bash
+# 透過 git clone 專案到主機任意路徑下
+$ git clone https://github.com/85phantom/interview-upload-system.git
+
+```
+
 ## Installation
 
 ```bash
@@ -43,14 +51,6 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-```
-
-## Clone 專案
-
-```bash
-# 透過 git clone 專案到主機任意路徑下
-$ git clone https://github.com/85phantom/interview-upload-system.git
-
 ```
 
 ## License
