@@ -45,8 +45,6 @@ export class PostConsumer {
           status: UploadStatus.error,
         });
       }
-
-      await job.moveToCompleted();
     } catch (error) {
       throw error;
     }
