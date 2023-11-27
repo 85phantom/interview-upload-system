@@ -1,23 +1,32 @@
 import { UpdatePost, Post, PostInput, UploadStatus } from 'src/schema/posts';
 import db from '../db';
+import { DataError } from 'node-json-db';
 
 export class PostsRepository {
   private uploadPath: string;
 
   constructor() {
-    this.uploadPath = '/uplaod';
+    this.uploadPath = '/upload';
   }
 
   public async create(postInput: PostInput): Promise<Post> {
-    const createUplaodPath = this.uploadPath.concat('[]');
-    await db.push(createUplaodPath, postInput);
-    const result = await this.findById(postInput.id);
-    return result;
+    try {
+      const createUplaodPath = this.uploadPath.concat('[]');
+      await db.push(createUplaodPath, postInput);
+      const result = await this.findById(postInput.id);
+      return result;
+    } catch (error) {
+      if (!(error instanceof DataError)) throw error;
+    }
   }
 
   public async findAll(): Promise<Post[]> {
-    const postList = (await db.getData(this.uploadPath)) as Array<any>;
-    return postList.map((upladFile) => new Post(upladFile));
+    try {
+      const postList = (await db.getData(this.uploadPath)) as Array<any>;
+      return postList.map((uploadFile) => new Post(uploadFile));
+    } catch (error) {
+      if (!(error instanceof DataError)) throw error;
+    }
   }
 
   public async findByStatus(status: UploadStatus): Promise<Post[]> {
@@ -27,7 +36,6 @@ export class PostsRepository {
       }
       return false;
     });
-
     return postList.map((post) => new Post(post));
   }
 
@@ -41,8 +49,12 @@ export class PostsRepository {
   }
 
   public async count(): Promise<number> {
-    const count = await db.count(this.uploadPath);
-    return count;
+    try {
+      const count = await db.count(this.uploadPath);
+      return count;
+    } catch (error) {
+      if (!(error instanceof DataError)) throw error;
+    }
   }
 
   public async update(id: number, data: UpdatePost) {

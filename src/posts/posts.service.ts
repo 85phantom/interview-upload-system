@@ -6,6 +6,7 @@ import { isURL } from 'class-validator';
 import { Cron } from '@nestjs/schedule';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
+import { DataError } from 'node-json-db';
 
 @Injectable()
 export class PostService {
@@ -21,10 +22,7 @@ export class PostService {
       }
       // 檢查資料庫當中有多少個已存在的 post，根據已存在的數量 +1，
       // 若是不存在會吐出 error，則 id 為 existPosts + 1 = 1。
-      let existPosts = 0;
-      try {
-        existPosts = await this.postRepository.count();
-      } catch (error) {}
+      const existPosts = (await this.postRepository.count()) ?? 0;
 
       const postInput = new PostInput({
         coverUrl: data.coverUrl,
@@ -40,7 +38,7 @@ export class PostService {
 
   public async list(): Promise<Post[]> {
     try {
-      const result = await this.postRepository.findAll();
+      const result = (await this.postRepository.findAll()) || [];
       return result;
     } catch (error) {
       throw error;
@@ -69,7 +67,7 @@ export class PostService {
         });
       }
     } catch (error) {
-      throw error;
+      if (!(error instanceof DataError)) throw error;
     }
   }
 }
