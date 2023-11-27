@@ -40,6 +40,13 @@ $ git clone https://github.com/85phantom/interview-upload-system.git
 $ npm install
 ```
 
+## 設定環境變數
+
+```bash
+# 在執行的環境當中設定環境變數，將申請的 client_id 放入
+$  export IMGUR_CLIENTID=${your_client_id}
+```
+
 ## Running the app
 
 ```bash

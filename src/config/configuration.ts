@@ -1,3 +1,3 @@
 export default () => ({
-  imgur: { clientId: '1a4649a98fb55a0' },
+  imgur: { clientId: process.env.IMGUR_CLIENTID },
 });
